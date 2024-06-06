@@ -4,6 +4,13 @@ use App\Http\Controllers\Admin\AdminGalleryController;
 use App\Http\Controllers\Admin\AdminRequestGalleryController;
 use App\Http\Controllers\Admin\AdminRequestWarehouseController;
 use App\Http\Controllers\Admin\AdminWarehouseController;
+
+use App\Http\Controllers\Warehouse\DashboardController;
+use App\Http\Controllers\Warehouse\ProdukWarehouseController;
+use App\Http\Controllers\Warehouse\TransaksiWarehouseController;
+use App\Http\Controllers\Warehouse\LaporanWarehouseController;
+use App\Http\Controllers\Warehouse\NotifikasiWarehouseController;
+
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\MobilController;
@@ -650,35 +657,35 @@ Route::get('/warehouse/api', [WarehouseController::class, 'warehouseListAPI']);
 Route::resource('warehouse', WarehouseController::class);
 Route::get('/gallery/warehouse/api', [GalleryController::class, 'warehouseListAPI']);
 Route::resource('gallery', GalleryController::class);
-
-Route::get('/admin/warehouse', [AdminWarehouseController::class, 'index'])->name('admin.warehouse.index');;
-
 Route::put('/admin/accept/warehouse/{id}', [AdminRequestWarehouseController::class, 'update'])->name('admin.accept.warehouse.update');
 
-Route::get('/admin/produkwarehouse', [AdminWarehouseController::class, 'produkwarehouse'])->name('admin.produk.warehouse');
-Route::get('/admin/pembelianproduk', [AdminWarehouseController::class, 'pembelianproduk'])->name('admin.pembelianproduk.warehouse');
-Route::get('/admin/transaksiwarehouse', [AdminWarehouseController::class, 'transaksiwarehouse'])->name('admin.transaksiwarehouse.warehouse');
-Route::get('/admin/laporanpemesanan', [AdminWarehouseController::class, 'laporanpemesanan'])->name('admin.laporanpemesanan.warehouse');
-Route::get('/admin/laporanstok', [AdminWarehouseController::class, 'laporanstok'])->name('admin.laporanstok.warehouse');
-Route::post('/addStock', [AdminWarehouseController::class, 'addStock'])->name('admin.addStock.warehouse');
-Route::get('/admin/produkwarehouse/{id}/edit', [AdminWarehouseController::class, 'editProduk'])->name('admin.editProduk.warehouse');
-Route::get('/admin/produkwarehouse/{id}/hapus', [AdminWarehouseController::class, 'hapusProduk'])->name('admin.hapusProduk.warehouse');
-Route::get('/admin/TambahProdukWarehouse', [AdminWarehouseController::class, 'tambahproduk'])->name('admin.tambahproduk.warehouse');
-Route::get('/admin/TambahTransaksiWarehouse', [AdminWarehouseController::class, 'tambahtransaksi'])->name('admin.tambahtransaksi.warehouse');
-Route::post('/addTransaksi', [AdminWarehouseController::class, 'addTransaksi'])->name('admin.addTransaksi.warehouse');
-Route::get('/admin/TambahTransaksiWarehouse/{id}/hapus', [AdminWarehouseController::class, 'deleteTransaksi'])->name('admin.deleteTransaksi.warehouse');
-Route::get('/admin/transaksiWarehouse/{id}/edit', [AdminWarehouseController::class, 'editTransaksi'])->name('admin.editTransaksi.warehouse');
-Route::get('/admin/notifikasiwarehouse', [AdminWarehouseController::class, 'getNotifications'])->name('admin.notifikasiwarehouse.warehouse');
-Route::put('/admin/produkWarehouse/{id}/update', [AdminWarehouseController::class, 'updateProduk'])->name('admin.updateProduk.warehouse');
-Route::put('/admin/transaksiWarehouse/{id}/update', [AdminWarehouseController::class, 'updateTransaksi'])->name('admin.updateTransaksi.warehouse');
-Route::get('/admin/notifikasi', [AdminWarehouseController::class, 'getNotificationsCount'])->name('admin.getNotificationsCount.warehouse');
-Route::get('/admin/laporanpemesanan/date', [AdminWarehouseController::class, 'searchByDate'])->name('admin.searchByDate.warehouse');
+Route::get('/admin/warehouse', [DashboardController::class, 'index'])->name('admin.warehouse.index');;
+
+Route::get('/admin/produkwarehouse', [ProdukWarehouseController::class, 'produkwarehouse'])->name('admin.produk.warehouse');
+Route::get('/admin/pembelianproduk', [ProdukWarehouseController::class, 'pembelianproduk'])->name('admin.pembelianproduk.warehouse');
+Route::get('/admin/TambahProdukWarehouse', [ProdukWarehouseController::class, 'tambahproduk'])->name('admin.tambahproduk.warehouse');
+Route::post('/addStock', [ProdukWarehouseController::class, 'addStock'])->name('admin.addStock.warehouse');
+Route::get('/admin/produkwarehouse/{id}/edit', [ProdukWarehouseController::class, 'editProduk'])->name('admin.editProduk.warehouse');
+Route::get('/admin/produkwarehouse/{id}/hapus', [ProdukWarehouseController::class, 'hapusProduk'])->name('admin.hapusProduk.warehouse');
+Route::put('/admin/produkWarehouse/{id}/update', [ProdukWarehouseController::class, 'updateProduk'])->name('admin.updateProduk.warehouse');
 
 
+Route::get('/admin/transaksiwarehouse', [TransaksiWarehouseController::class, 'transaksiwarehouse'])->name('admin.transaksiwarehouse.warehouse');
+Route::get('/admin/TambahTransaksiWarehouse', [TransaksiWarehouseController::class, 'tambahtransaksi'])->name('admin.tambahtransaksi.warehouse');
+Route::post('/addTransaksi', [TransaksiWarehouseController::class, 'addTransaksi'])->name('admin.addTransaksi.warehouse');
+Route::get('/admin/TambahTransaksiWarehouse/{id}/hapus', [TransaksiWarehouseController::class, 'deleteTransaksi'])->name('admin.deleteTransaksi.warehouse');
+Route::get('/admin/transaksiWarehouse/{id}/edit', [TransaksiWarehouseController::class, 'editTransaksi'])->name('admin.editTransaksi.warehouse');
+Route::put('/admin/transaksiWarehouse/{id}/update', [TransaksiWarehouseController::class, 'updateTransaksi'])->name('admin.updateTransaksi.warehouse');
+
+Route::get('/admin/laporanpemesanan', [LaporanWarehouseController::class, 'laporanpemesanan'])->name('admin.laporanpemesanan.warehouse');
+Route::get('/admin/laporanstok', [LaporanWarehouseController::class, 'laporanstok'])->name('admin.laporanstok.warehouse');
+Route::get('/admin/laporanpemesanan/date', [LaporanWarehouseController::class, 'searchByDate'])->name('admin.searchByDate.warehouse');
+
+Route::get('/admin/notifikasiwarehouse', [NotifikasiWarehouseController::class, 'getNotifications'])->name('admin.notifikasiwarehouse.warehouse');
+Route::get('/admin/notifikasi', [NotifikasiWarehouseController::class, 'getNotificationsCount'])->name('admin.getNotificationsCount.warehouse');
 
 Route::get('/admin/request/warehouse', [AdminRequestWarehouseController::class, 'index'])->name('admin.request.warehouse.index');
 Route::get('/admin/request/warehouse/{id}', [AdminRequestWarehouseController::class, 'show'])->name('admin.request.warehouse.show');
-
 
 Route::get("/admin/chatbot/model", [ChatbotController::class, 'model']);
 Route::get("/admin/chatbot/dataset", [ChatbotController::class, 'dataset']);

@@ -125,39 +125,3 @@
     </section>
 </div>  
 @endsection
-
-@section('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-        $(document).ready(function() {
-            // Tangkap event submit form
-            $('form').submit(function(event) {
-                // Mencegah perilaku default form
-                event.preventDefault();
-
-                // Lakukan AJAX request
-                $.ajax({
-                    url: $(this).attr('action'),
-                    type: $(this).attr('method'),
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        // Tampilkan SweetAlert untuk memberi tahu pengguna bahwa update produk berhasil
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Produk berhasil diperbarui',
-                            showConfirmButton: false,
-                            timer: 1500
-                        }).then(function() {
-                            // Redirect pengguna ke halaman lain setelah menutup SweetAlert
-                            window.location.href = '/admin/warhouse/index';
-                        });
-                    },
-                    error: function(response) {
-                        // Tangkap kesalahan jika ada
-                        console.log(response);
-                    }
-                });
-            });
-        });
-    </script>
-@endsection
