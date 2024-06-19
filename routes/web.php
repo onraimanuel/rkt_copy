@@ -19,6 +19,7 @@ use App\Http\Controllers\TiketController;
 use App\Http\Controllers\TiketExperienceController;
 use App\Http\Controllers\WarehouseController;
 use App\Http\Controllers\StokController;
+use App\Http\Controllers\AutentikasiController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ChatbotController;
 
@@ -35,7 +36,7 @@ use App\Http\Controllers\Admin\ChatbotController;
 
 // Route untuk halaman utama pada aplikasi.
 Route::get('/', 'App\Http\Controllers\HomeController@index');
-
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 /**
  * Fitur Autentikasi Pengguna.
@@ -787,3 +788,9 @@ Route::get('/testing/delete/delete_dummy', 'App\Http\Controllers\PembelianContro
 Route::get('/bagikan', function () {
     return view('user.pembelian.share');
 })->name('bagikan');
+
+Route::get('password/reset', [AutentikasiController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('password/email', [AutentikasiController::class, 'sendResetLinkEmail'])->name('password.email');
+Route::get('password/reset/{token}', [AutentikasiController::class, 'showResetPasswordForm'])->name('password.reset');
+Route::post('password/reset', [AutentikasiController::class, 'resetPassword'])->name('password.update');
+

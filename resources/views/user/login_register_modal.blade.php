@@ -56,7 +56,6 @@
                                             <span>MASUK</span>
                                             <i class="icon-long-arrow-right"></i>
                                         </button>
-
                                         <!-- <div class="custom-control custom-checkbox">
                                             <input type="checkbox" class="custom-control-input" id="signin-remember">
                                             <label class="custom-control-label" for="signin-remember">Remember Me</label>
@@ -64,6 +63,7 @@
 
                                         <!-- <a href="#" class="forgot-link">Forgot Your Password?</a> -->
                                     </div><!-- End .form-footer -->
+                                    <a href="{{route('password.request')}}"> <u>Lupa Password?</u></a>
                                 </form>
                                 <!-- <div class="form-choice">
                                     <p class="text-center">atau masuk melalui</p>
